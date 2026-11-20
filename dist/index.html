@@ -1705,10 +1705,10 @@
           <div id="standby-eyebrow" class="sequence-eyebrow tabular-nums">Launch 01 / 05</div>
 
           <div class="standby-headline-group">
-            <h1 id="standby-headline" class="standby-headline"><span id="standby-brand">BISON on</span> <strong id="standby-platform">Facebook</strong></h1>
+            <h1 id="standby-headline" class="standby-headline"><span id="standby-brand">Century Zone</span> <strong id="standby-platform">Official website</strong></h1>
             <div class="channel-signature">
               <span id="standby-emblem" aria-hidden="true"></span>
-              <p id="standby-handle" class="standby-handle">Official Facebook page</p>
+              <p id="standby-handle" class="standby-handle">centuryzone.lk</p>
             </div>
           </div>
 
@@ -1718,7 +1718,7 @@
           <div class="standby-cta-wrap">
             <button id="btn-launch" type="button" class="btn-primary">
               <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 3.8a.8.8 0 0 1 1.2-.7l10.5 6.2a.8.8 0 0 1 0 1.4L6.2 16.9a.8.8 0 0 1-1.2-.7z"/></svg>
-              <span id="btn-launch-label">Launch Facebook</span>
+              <span id="btn-launch-label">Launch website</span>
             </button>
           </div>
         </div>
@@ -2015,6 +2015,20 @@
       function createDefaultLaunches() {
         return [
           {
+            id: 'website',
+            title: 'CENTURY ZONE',
+            platform: 'Official Website',
+            railLabel: 'Website',
+            displayHeadline: 'CENTURY ZONE — Official Website',
+            ctaLabel: 'LAUNCH CENTURYZONE.LK',
+            handle: 'centuryzone.lk',
+            qrPrompt: 'SCAN TO VISIT',
+            url: 'https://centuryzone.lk/',
+            guestName: '',
+            guestTitle: '',
+            launched: false
+          },
+          {
             id: 'facebook',
             title: 'BISON Official',
             platform: 'Facebook',
@@ -2069,20 +2083,6 @@
             guestName: '',
             guestTitle: '',
             launched: false
-          },
-          {
-            id: 'website',
-            title: 'CENTURY ZONE',
-            platform: 'Official Website',
-            railLabel: 'Website',
-            displayHeadline: 'CENTURY ZONE — Official Website',
-            ctaLabel: 'LAUNCH CENTURYZONE.LK',
-            handle: 'centuryzone.lk',
-            qrPrompt: 'SCAN TO VISIT',
-            url: 'https://centuryzone.lk/',
-            guestName: '',
-            guestTitle: '',
-            launched: false
           }
         ];
       }
@@ -2095,6 +2095,7 @@
           logoFileName: '',
           countdownEnabled: true,
           soundEnabled: true,
+          orderVersion: 1,
           activeIndex: 0,
           viewMode: 'stage', // 'stage' | 'finale'
           launches: createDefaultLaunches()
@@ -2131,8 +2132,15 @@
             merged.launches = restored.length === 5 ? restored : createDefaultLaunches();
           }
 
-          if (typeof merged.activeIndex !== 'number' || merged.activeIndex < 0 || merged.activeIndex > 4) {
+          if (!Number.isInteger(merged.activeIndex) || merged.activeIndex < 0 || merged.activeIndex > 4) {
             merged.activeIndex = 0;
+          }
+          if (!parsed.orderVersion) {
+            const activeLaunch = merged.launches[merged.activeIndex];
+            const websiteIndex = merged.launches.findIndex(item => item.id === 'website');
+            merged.launches.unshift(merged.launches.splice(websiteIndex, 1)[0]);
+            merged.activeIndex = merged.launches.some(item => item.launched)
+              ? merged.launches.indexOf(activeLaunch) : 0;
           }
           if (merged.viewMode !== 'stage' && merged.viewMode !== 'finale') {
             merged.viewMode = 'stage';
@@ -3011,7 +3019,7 @@
           ? 'ALL PLATFORMS ARE NOW LIVE'
           : launchedTotal + ' OF 5 PLATFORMS ARE NOW LIVE';
 
-        const webItem = state.launches.find(function (l) { return l.id === 'website'; }) || state.launches[4];
+        const webItem = state.launches.find(function (l) { return l.id === 'website'; });
         const socialItems = state.launches.filter(function (l) { return l.id !== 'website'; });
 
         dom.finaleWebPillText.textContent = webItem.launched ? 'NOW LIVE' : 'UPCOMING';
