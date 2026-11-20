@@ -1,15 +1,131 @@
-:root { --bg-canvas:#061d3c; --bg-surface:#0c2b50; --bg-elevated:#12375e; --border-crisp:#314c68; --border-strong:#54708d; --accent-gold:#eff5ff; --accent-gold-hover:#fff; --accent-ink:#082f63; --text-secondary:#c4d2e1; --text-quiet:#acbfd3; }
-.top-header { background:#fff; color:#082f63; border-bottom:3px solid #df151f; }
-.brand-wordmark,.brand-subtitle,.brand-sep { color:#082f63; }
-.top-header button { background:#082f63; color:#fff; }
-.brand-logo-box img { max-height:42px; max-width:100px; }
-.stage-viewport { max-width:none; background:linear-gradient(90deg,rgba(4,23,48,.98) 4%,rgba(4,23,48,.90) 34%,rgba(4,23,48,.46) 72%),url('assets/hero.webp') center 55%/cover; }
-.standby-stage { max-width:1200px; align-items:flex-start; text-align:left; gap:clamp(12px,2.5vh,24px); }
-.standby-headline-group { align-items:flex-start; }
-.standby-headline { font-weight:800; letter-spacing:-.05em; text-wrap:balance; }
-.sequence-eyebrow { background:#061d3c; border-color:#67809a; }
-.sequence-eyebrow::before { content:''; width:20px; height:3px; background:#ff4956; }
-.emblem-badge { width:64px; height:64px; border-radius:12px; }
-.btn-primary { background:#c61221; border-color:#c61221; color:white; }
-.btn-primary:hover { background:#a90e1b; border-color:#a90e1b; }
-@media(max-width:640px){ .brand-lockup { gap:8px; } .brand-logo-box img { max-width:56px; } .top-header { gap:6px; padding:12px; } .brand-wordmark { font-size:.76rem; } .stage-viewport { background-position:62% center; } }
+:root {
+  --bg-canvas: #09182a;
+  --bg-surface: #10263d;
+  --bg-elevated: #19344d;
+  --border-crisp: #30445a;
+  --border-strong: #61788e;
+  --text-secondary: #d0dce7;
+  --text-quiet: #acbed0;
+  --accent-gold: #d7e8ff;
+  --accent-gold-hover: #fff;
+  --accent-ink: #0d2843;
+  --brand-red: #cc2030;
+  --edge: clamp(20px, 5.8vw, 104px);
+}
+
+.top-header, .ceremony-rail { padding-inline: var(--edge); }
+.top-header { background: #fbfcfd; color: #112c48; border: 0; padding-block: 15px; }
+.brand-logo-box, .brand-logo-box img { height: 47px; max-height: 47px; max-width: 112px; }
+.brand-text-stack { display: grid; gap: 1px; padding-left: 18px; border-left: 1px solid #cad3dc; }
+.brand-wordmark { color: #112c48; font-size: .91rem; letter-spacing: .09em; }
+.brand-sep { display: none; }
+.brand-subtitle { color: #596877; font-size: .75rem; letter-spacing: .12em; }
+.operator-controls { gap: 7px; }
+.operator-controls button[hidden] { display: none; }
+.top-header .quiet-icon-btn { opacity: 1; background: #fff; border-color: #cdd6df; color: #28455f; border-radius: 50%; }
+.top-header .quiet-icon-btn:hover, .top-header .quiet-icon-btn:focus-visible { color: #0c243b; background: #e7eef4; }
+.top-header :focus-visible { outline-color: #164a79; }
+
+.stage-viewport {
+  max-width: none;
+  padding: clamp(42px, 7vh, 96px) var(--edge);
+  background: linear-gradient(90deg, #08192b 0%, rgb(8 25 43 / 95%) 20%, rgb(8 25 43 / 75%) 41%, rgb(8 25 43 / 15%) 75%),
+              url('assets/hero.webp') center / cover no-repeat;
+}
+.stage-screen { max-width: 1600px; }
+.standby-stage { max-width: none; margin: 0; align-items: flex-start; text-align: left; gap: clamp(20px, 3.6vh, 38px); }
+.sequence-eyebrow, .rail-heading, .rail-num { font-family: Consolas, 'Courier New', monospace; }
+.sequence-eyebrow { background: none; border: none; padding: 0; color: #eaf1f8; font-size: .85rem; letter-spacing: .14em; }
+.sequence-eyebrow::before { content: ''; width: 32px; height: 3px; background: #ff5060; margin-right: 3px; }
+.standby-headline-group { align-items: flex-start; gap: clamp(16px, 2.8vh, 30px); }
+.standby-headline { font-size: clamp(4rem, 7.8vw, 9rem); line-height: .99; letter-spacing: -.055em; }
+.standby-headline span { display: block; color: #d3dfeb; font-size: .46em; font-weight: 480; letter-spacing: -.035em; margin-bottom: .16em; }
+.standby-headline strong { font-weight: 750; text-wrap: balance; }
+.channel-signature { display: flex; align-items: center; gap: 10px; }
+#standby-emblem { display: grid; place-items: center; color: #ecf2f8; }
+#standby-emblem svg { width: 20px; height: 20px; }
+.standby-handle { text-align: left; font-size: clamp(1rem, 1.4vw, 1.2rem); overflow-wrap: anywhere; }
+.standby-cta-wrap { padding-top: 2px; }
+.btn-primary { min-height: 54px; border-radius: 7px; padding-inline: 26px; background: var(--brand-red); border-color: var(--brand-red); color: #fff; text-transform: none; letter-spacing: 0; font-weight: 650; }
+.btn-primary:hover { background: #ad1927; border-color: #ad1927; color: #fff; }
+#btn-launch svg { width: 16px; height: 16px; }
+.stage-viewport:has(#screen-countdown:not(.is-hidden)),
+.stage-viewport:has(#screen-live:not(.is-hidden)),
+.stage-viewport:has(#screen-finale:not(.is-hidden)) { background-image: linear-gradient(90deg, rgb(8 25 43 / 96%), rgb(8 25 43 / 84%)), url('assets/hero.webp'); }
+.qr-showcase-panel { background: #11283d; }
+.stage-viewport:has(#screen-live:not(.is-hidden)) { padding-block: clamp(16px, 3vh, 36px); }
+.live-reveal-grid { grid-template-columns: minmax(0, 1fr) minmax(220px, 280px); gap: 18px; }
+.live-main-zone { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.live-main-zone .live-identity-row { order: -1; gap: 12px; min-width: 0; }
+.live-main-zone .live-title { font-size: clamp(1.35rem, 2.5vw, 2.4rem); }
+.live-main-zone .live-emblem-sm { width: 40px; height: 40px; border-radius: 10px; }
+.live-main-zone .live-emblem-sm svg { width: 22px; height: 22px; }
+#btn-next-launch { margin-left: auto; min-height: 44px; }
+.live-preview { min-width: 0; border: 1px solid var(--border-strong); border-radius: 12px; overflow: hidden; background: var(--bg-surface); }
+.preview-bar, .preview-help { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; padding: 8px 14px; }
+.preview-bar h2 { font-size: 1rem; }
+.preview-bar .live-clean-handle, .preview-help { font-size: .875rem; color: var(--text-secondary); }
+.preview-body { display: grid; place-items: center; background: #e9edf1; }
+.preview-body img[data-channel="youtube"] { display: block; width: 100%; height: auto; }
+.preview-help[hidden] { display: none; }
+.preview-body iframe { width: 100%; height: clamp(300px, 52vh, 675px); border: 0; background: #fff; }
+.preview-body iframe[data-channel="facebook"] { max-width: 500px; }
+.preview-help button { background: transparent; border: 0; color: white; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 5px; }
+#screen-live .qr-showcase-panel { padding: 18px; }
+#screen-live .qr-white-card canvas { width: 150px; height: 150px; }
+@media (max-width: 900px) {
+  .live-reveal-grid { grid-template-columns: minmax(0, 1fr); }
+  #screen-live .qr-showcase-panel { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 16px; }
+  #screen-live .qr-white-card canvas { width: 120px; height: 120px; }
+}
+@media (max-width: 640px) {
+  #screen-live .live-main-zone { gap: 10px; }
+  #screen-live .live-identity-row { width: 100%; }
+  #screen-live .live-badge-row { gap: 6px; }
+  #screen-live .live-step-tag { letter-spacing: .03em; }
+  #btn-next-launch { padding-inline: 14px; }
+  #screen-live .live-preview { margin-inline: -10px; }
+}
+.live-title, .finale-heading { text-wrap: balance; }
+
+.ceremony-rail { background: #f4f6f8; border-top: 0; padding-block: 16px 20px; color: #172c40; }
+.rail-heading, .ceremony-rail-inner { max-width: 1600px; margin-inline: auto; }
+.rail-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 11px; font-size: .79rem; color: #4b6072; }
+.rail-heading span:first-child { font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #273c50; }
+.rail-track { gap: 7px; }
+.rail-item { position: relative; justify-content: flex-start; gap: 10px; border: 1px solid #ccd5dd; border-radius: 6px; background: #fff; color: #334b61; }
+.rail-item:hover { background: #e7edf2; border-color: #adbfcd; }
+.rail-item.is-active { color: white; background: #132f49; border-color: #132f49; }
+.rail-platform-icon { display: grid; place-items: center; }
+.rail-platform-icon svg { height: 18px; width: 18px; }
+.rail-num { color: #596d7c; font-weight: 500; }
+.rail-item.is-launched::after { content: '✓'; margin-left: auto; color: #187141; font-weight: 700; }
+.rail-item.is-active.is-launched::after { color: #94eab5; }
+.ceremony-rail :focus-visible { outline-color: #215b86; }
+.rail-finale-btn { text-transform: none; letter-spacing: 0; }
+
+@media (max-width: 1100px) {
+  .rail-num { display: none; }
+  .rail-track { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .top-header { padding: 12px 16px; gap: 8px; }
+  .brand-lockup { gap: 7px; }
+  .brand-text-stack { padding-left: 8px; }
+  .brand-wordmark { font-size: .75rem; letter-spacing: .035em; }
+  .brand-logo-box, .brand-logo-box img { height: auto; max-height: 35px; max-width: 62px; }
+  .operator-controls { gap: 4px; }
+  .quiet-icon-btn { width: 36px; height: 36px; }
+  .stage-viewport { padding-block: 43px; background-position: 62% center; background-image: linear-gradient(90deg, rgb(8 25 43 / 92%), rgb(8 25 43 / 58%)), url('assets/hero.webp'); }
+  .standby-headline { font-size: clamp(3.05rem, 12vw, 5rem); }
+  .ceremony-rail { padding: 13px 12px; }
+  .rail-heading { margin-inline: 4px; }
+  .rail-track { gap: 3px; }
+  .rail-item { flex-direction: column; justify-content: center; gap: 6px; min-height: 60px; padding: 6px 0; }
+  .rail-name { font-size: .76rem; }
+  .rail-item.is-launched::after { position: absolute; right: 3px; top: 1px; font-size: .7rem; }
+}
+@media (max-width: 370px) {
+  .brand-wordmark { max-width: 90px; line-height: 1.15; }
+  .rail-name { font-size: .71rem; }
+}
