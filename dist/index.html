@@ -1614,6 +1614,8 @@
       }
     }
   </style>
+  <link rel="icon" href="assets/logo-transparent.png" />
+  <link rel="stylesheet" href="launch.css" />
 </head>
 <body>
   <!-- Gold & Ivory Celebratory Canvas Confetti Layer -->
@@ -2880,8 +2882,8 @@
           dom.headerLogoImg.src = state.logoDataUrl;
           dom.headerLogoBox.classList.add('is-visible');
         } else {
-          dom.headerLogoImg.removeAttribute('src');
-          dom.headerLogoBox.classList.remove('is-visible');
+          dom.headerLogoImg.src = 'assets/logo-transparent.png';
+          dom.headerLogoBox.classList.add('is-visible');
         }
 
         // Mute icon visual state

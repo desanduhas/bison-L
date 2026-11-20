@@ -1,0 +1,15 @@
+:root { --bg-canvas:#061d3c; --bg-surface:#0c2b50; --bg-elevated:#12375e; --border-crisp:#314c68; --border-strong:#54708d; --accent-gold:#eff5ff; --accent-gold-hover:#fff; --accent-ink:#082f63; --text-secondary:#c4d2e1; --text-quiet:#acbfd3; }
+.top-header { background:#fff; color:#082f63; border-bottom:3px solid #df151f; }
+.brand-wordmark,.brand-subtitle,.brand-sep { color:#082f63; }
+.top-header button { background:#082f63; color:#fff; }
+.brand-logo-box img { max-height:42px; max-width:100px; }
+.stage-viewport { max-width:none; background:linear-gradient(90deg,rgba(4,23,48,.98) 4%,rgba(4,23,48,.90) 34%,rgba(4,23,48,.46) 72%),url('assets/hero.webp') center 55%/cover; }
+.standby-stage { max-width:1200px; align-items:flex-start; text-align:left; gap:clamp(12px,2.5vh,24px); }
+.standby-headline-group { align-items:flex-start; }
+.standby-headline { font-weight:800; letter-spacing:-.05em; text-wrap:balance; }
+.sequence-eyebrow { background:#061d3c; border-color:#67809a; }
+.sequence-eyebrow::before { content:''; width:20px; height:3px; background:#ff4956; }
+.emblem-badge { width:64px; height:64px; border-radius:12px; }
+.btn-primary { background:#c61221; border-color:#c61221; color:white; }
+.btn-primary:hover { background:#a90e1b; border-color:#a90e1b; }
+@media(max-width:640px){ .brand-lockup { gap:8px; } .brand-logo-box img { max-width:56px; } .top-header { gap:6px; padding:12px; } .brand-wordmark { font-size:.76rem; } .stage-viewport { background-position:62% center; } }
